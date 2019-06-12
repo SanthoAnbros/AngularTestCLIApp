@@ -1,0 +1,20 @@
+<form  class = "tp-form" [formGroup]="varFormG" >
+  
+  <div>
+      <input type="text" #fnamm formControlName="fname" [ngClass]="{'is-invalid':varFormG.get('fname').touched &&  varFormG.get('fname').invalid}" class="form-control">
+      <div  class="invalid-feedback">
+          <div *ngIf="varFormG.controls['fname'].hasError('required')" >First Name is required</div>
+          <div *ngIf="varFormG.controls['fname'].hasError('email')">Email is required</div>
+          <div *ngIf="varFormG.controls['fname'].hasError('minlength')">Min Length (5) is required</div>
+          <div *ngIf="varFormG.controls['fname'].hasError('maxlength')">Min Length (10)  is required</div>
+      </div>
+  </div>
+  <div>
+      <input type="text"   formControlName="lname"   [ngClass]="{'is-invalid':varFormG.controls.lname.touched &&  varFormG.controls.lname.invalid}" placeholder="UserId" class="form-control" >
+      <div  class="invalid-feedback" >
+          <div >Last Name is required</div>
+      </div>
+  </div>  
+  <input (click)="ExportToExcel()" value="Export To Excel" type="button"/>
+  
+</form>
