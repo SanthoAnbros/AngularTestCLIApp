@@ -29,8 +29,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule, 
     MatAutocompleteModule, 
-    MatInputModule,
-    BrowserAnimationsModule
+    MatInputModule
+    
   ],
   providers: [ServicesService, XlservicesService],
   bootstrap: [AppComponent]
