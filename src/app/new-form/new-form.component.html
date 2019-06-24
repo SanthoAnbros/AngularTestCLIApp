@@ -1,10 +1,12 @@
+ <div class="jumbotran">
  <div class="container-fluid">
-
+  
    <h3 class="p-5">{{Message}}</h3>
    <!-- <div class="container-fluid"> -->
    <div class="row">
       <div class=col-md-6>
             <form name="form" (onsubmit)="onClickEvent(newformG)" [formGroup]="newformG">
+
             <div class="row">
                   <div class="col-md-6">
                      <input type="text"   formControlName="empId"  [(ngModel)]="EmpId" placeholder="UserId"  [ngClass]="{'is-invalid':newformG.get('empId').touched &&  newformG.get('empId').invalid}" name="inpId" class="form-control">
@@ -60,11 +62,26 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let com of compstemp">
-                        <td>{{com.id}}</td>
+                        <td>{{com.id}}      
+                        </td>
                         <td>{{com.postId}}</td>
                         <td>{{com.name}}</td>
-                        <td>{{com.email}}</td>
-                        <td>{{com.body}}</td>
+                        <td>
+                              <div *ngIf="com.email.length>14">
+                                    {{com.email.substring(0,14)}}<span matTooltip=`{{com.email}}`>...</span>
+                                 </div>
+                                 <div *ngIf="com.email.length<14">
+                                       {{com.email}}
+                                 </div>
+                        </td>
+                        <td> 
+                           <div *ngIf="com.body.length>10">
+                              {{com.body.substring(0,10)}}<span matTooltip=`{{com.body}}`>...</span>
+                           </div>
+                           <div *ngIf="com.body.length<10">
+                                 {{com.body}}
+                           </div>
+                        </td>
                         <td><button (click)="EditComp(com)" class="btn btn-info"> Edit</button>  </td>
                       </tr>
                     </tbody>
@@ -74,4 +91,5 @@
    </div>        
    <!-- </div>    -->
   
+</div>
 </div>

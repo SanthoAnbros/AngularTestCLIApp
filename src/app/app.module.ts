@@ -12,6 +12,12 @@ import { TestFormComponent } from './test-form/test-form.component';
 import { XlservicesService } from './Services/xlservices.service';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { MaterialCompoComponent } from './material-compo/material-compo.component';
+import { HomeComponent } from './home/home.component';
+import { MaterialCombo1Component } from './material-combo1/material-combo1.component';
+import { NewForm2Component } from './new-form2/new-form2.component';
+import { NestedFormComponent } from './nested-form/nested-form.component';
 
 
 @NgModule({
@@ -19,7 +25,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppComponent,
     TopNavigationComponent,
     NewFormComponent,
-    TestFormComponent
+    TestFormComponent,
+    MaterialCompoComponent,
+    HomeComponent,
+    MaterialCombo1Component,
+    NewForm2Component,
+    NestedFormComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +40,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule, 
     MatAutocompleteModule, 
-    MatInputModule
+    MatInputModule, 
+    MaterialModule
     
   ],
   providers: [ServicesService, XlservicesService],

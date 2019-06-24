@@ -1,5 +1,5 @@
 <form  class = "tp-form" [formGroup]="varFormG" >
-  
+       
   <div>
       <input type="text" #fnamm formControlName="fname" [ngClass]="{'is-invalid':varFormG.get('fname').touched &&  varFormG.get('fname').invalid}" class="form-control">
       <div  class="invalid-feedback">
@@ -15,8 +15,16 @@
           <div >Last Name is required</div>
       </div>
   </div>  
+  <div formArrayName="hobbies">    
+      <div *ngFor="let item of GFormArray.controls; let i = index" [formGroupName]="i">
+          {{i}}
+            <input type="text" formControlName="Hobb1"  placeholder="Hobb1" class="form-control" >
+            <input type="text"  formControlName="Hobb2"  placeholder="Hobb2" class="form-control" >
+            <button (click)="addHobbiesForm()">Add</button>
+            <button (click)="removeHobbiesForm(i)">Delete</button>
+      </div>        
+    </div> 
+    <input (click)="LogArray()" value="Submit" type="button"/>
   <input (click)="ExportToExcel()" value="Export To Excel" type="button"/>
-
 </form>
 
-<button mat-raised-button >Material Button</button>

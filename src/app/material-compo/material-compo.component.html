@@ -1,0 +1,98 @@
+<!-- <form  [formGroup]="varFormG" >
+  
+    <div>
+        <input type="text" #fnamm formControlName="fname" [ngClass]="{'is-invalid':varFormG.get('fname').touched &&  varFormG.get('fname').invalid}" class="form-control">
+        <div  class="invalid-feedback">
+            <div *ngIf="varFormG.controls['fname'].hasError('required')" >First Name is required</div>
+            <div *ngIf="varFormG.controls['fname'].hasError('email')">Email is required</div>
+            <div *ngIf="varFormG.controls['fname'].hasError('minlength')">Min Length (5) is required</div>
+            <div *ngIf="varFormG.controls['fname'].hasError('maxlength')">Min Length (10)  is required</div>
+        </div>
+    </div>
+    </form>
+    <form [formGroup]="varNewFormGroup">
+      <input class="form-control" type="text" formControlName="lname" [ngClass]="{'is-invalid':varNewFormGroup.controls.lname.touched && varNewFormGroup.controls.lname.invalid}">
+      <div *ngIf="varNewFormGroup.controls['lname'].hasError('email')" class="invalid-feedback">Error in Last Name</div>
+    </form> -->
+
+<form [formGroup]="varNewFormGroup">
+    <mat-form-field [ngClass]="{'is-invalid':varNewFormGroup.controls.lname.touched&&varNewFormGroup.controls.lname.invalid}" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input formControlName="lname" matInput placeholder="test pl" >
+      <mat-icon class="red" [ngClass]="{'red':varNewFormGroup.controls.lname.touched&&varNewFormGroup.controls.lname.invalid}" matSuffix>favorite</mat-icon>
+      <mat-hint style="color:red" *ngIf="varNewFormGroup.controls['lname'].touched && varNewFormGroup.controls['lname'].hasError('required')">Error : Required</mat-hint>
+    </mat-form-field>
+  </form>
+
+    <span></span>
+    <mat-menu #MM="matMenu">
+      <button [matMenuTriggerFor]="A" mat-menu-item>A</button>
+      <button [matMenuTriggerData]="{name:'Without Template'}" [matMenuTriggerFor]="B" mat-menu-item>B</button>
+      <button mat-menu-item>C</button>
+    </mat-menu>
+    <mat-menu #A="matMenu">
+        <button mat-menu-item>AA</button>
+        <button mat-menu-item>AAA</button>
+        <button mat-menu-item>AAAA</button>
+      </mat-menu>
+      <mat-menu #B="matMenu">
+        <ng-template matMenuContent let-name="name">
+            <button mat-menu-item>BB</button>
+            <button mat-menu-item>BBB: {{name}}</button>
+            <button mat-menu-item>BBBB</button>
+        </ng-template>
+      </mat-menu>
+
+    <button [matMenuTriggerFor]="MM" >Open Mat Menu</button>
+    <button [matMenuTriggerData]="{name : 'Hello'}" [matMenuTriggerFor]="B" >Open Mat Pass Content</button>
+
+      <button mat-button>Mat Button</button><br>
+      <button [disabled]="IsVisible" mat-raised-button>mat-raised-button</button><br>
+      <button mat-flat-button>mat-flat-button</button><br>
+      <button mat-stroked-button>mat-stroked-button</button><br>
+      <button mat-icon-button>mat-icon-button</button><br>
+      <button mat-fab	>mat-fab	Circular</button><br>
+      <button mat-mini-fab>mat-mini-fab</button><br>
+      <mat-button-toggle-group #toggleGroup="matButtonToggleGroup" multiple>
+        <mat-button-toggle value="a">a</mat-button-toggle>
+        <mat-button-toggle value="c">c</mat-button-toggle>
+        <mat-button-toggle value="b">b</mat-button-toggle>
+      </mat-button-toggle-group>
+      {{toggleGroup.value}}
+      <button color="primary" mat-icon-button (click)="OnClickFn()">
+          <mat-icon>grade</mat-icon>
+      </button>
+      <button [matBadgeHidden]="IsVisible" mat-raised-button matBadge="5" matBadgeOverlap="false" matBadgeColor="primary" matBadgeSize="large">Helloo</button>
+      
+
+      <mat-grid-list gutterSize="10px" cols="3">
+        <mat-grid-tile style="background-color: aqua;" rowspan="2" >A</mat-grid-tile>
+        <mat-grid-tile style="background-color: aqua" conspan="2">
+            <div class="jumbotron">
+            <mat-progress-spinner value="50"></mat-progress-spinner>
+            <mat-button-toggle (click)="loadData()"  >Start Spinner for 5 secs
+                <mat-spinner *ngIf="IsVisible" matSpinnerSize="small"></mat-spinner>
+            </mat-button-toggle>
+            <mat-toolbar>
+              <div>ToolBar</div>
+              <span>A</span>
+              <span>A</span>
+              <span>A</span>
+            </mat-toolbar>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile style="background-color: aqua">C</mat-grid-tile>
+        <mat-grid-tile style="background-color: aqua">D</mat-grid-tile>
+      </mat-grid-list>
+
+
+
+
+
+
+
+
+
+
+
+

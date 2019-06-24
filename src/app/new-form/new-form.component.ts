@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import {FormsModule, FormControl, FormGroup, Validators} from '@angular/forms'
+import { Component, OnInit, ChangeDetectorRef, ɵConsole } from '@angular/core';
+import {FormsModule, FormControl, FormGroup, Validators, FormArray} from '@angular/forms'
 import { ServicesService } from '../services.service';
 import { Comps, ItemsToBePost } from '../Classes/comps';
 import { stringify } from 'querystring';
@@ -7,6 +7,7 @@ import { stringify } from 'querystring';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 
 
 
@@ -22,10 +23,13 @@ export class NewFormComponent implements OnInit {
   dataTable : any;
 
   newformG  = new FormGroup({
-    empId : new FormControl('', Validators.required),
+    empId : new FormControl('', [Validators.required, Validators.maxLength(5)]),
     empName : new FormControl('', Validators.maxLength(5)),
     empGrade : new FormControl ('')
+    
   });
+
+
 
   EmpId: string ="";
   EmpName : string = "";
@@ -33,7 +37,7 @@ export class NewFormComponent implements OnInit {
 
   compstemp : Comps[];
 
-  Message : string = "Ng - New Form";
+  Message : string = "Ng - New Form ( Data fetched using HTTP API, and using Jquery datatable)";
   IsTrue : boolean = true;
 
   constructor(private _ServicesService : ServicesService, private chDed : ChangeDetectorRef) { }
@@ -47,7 +51,9 @@ export class NewFormComponent implements OnInit {
         this.chDed.detectChanges();
 
         const table: any = $('table');
-        this.dataTable = table.DataTable();
+        this.dataTable = table.DataTable({
+          responsive: true
+        });
       }
     );
   }

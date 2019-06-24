@@ -1,0 +1,6 @@
+mat-sidenav {
+    width: 20% !important;
+}
+mat-sidenav div{
+    margin: 2rem;
+}

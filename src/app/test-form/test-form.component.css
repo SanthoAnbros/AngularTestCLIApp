@@ -6,3 +6,6 @@
  .tp-full-width {
     width: 100%;
  }
+form{
+   min-height: -webkit-fill-available;
+}

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,  FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup,  FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { XlservicesService } from '../Services/xlservices.service';
 import { ServicesService } from '../services.service';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-test-form',
@@ -15,6 +16,10 @@ export class TestFormComponent implements OnInit {
   }
 
   varFormG : FormGroup;
+
+  // addHobbies(){
+  //   (<FormArray>this.varFormG.get('hobbies')).push(new FormControl('data'))
+  // }
 
   data: any = [{
     eid: 'e101',
@@ -35,8 +40,36 @@ export class TestFormComponent implements OnInit {
   ngOnInit() {
     this.varFormG  = this.fb.group({
       fname : ['',[Validators.required, Validators.email, Validators.minLength(5), Validators.maxLength(10), Validators.pattern]],
-      lname : ['', Validators.required]
+      lname : ['', Validators.required],
+      hobbies: this.fb.array([this.addHobbies()])
     });
+    }
+
+    addHobbies(){
+      return this.fb.group({
+        Hobb1:[''],
+        Hobb2:['']
+      })
+    }
+    addSubHobbie(){
+      return this.fb.group({
+        SubHobb1:[],
+        SubHobb2:[]
+      })
+    }
+
+    LogArray(){
+      console.log(this.varFormG.value);
+    }
+    addHobbiesForm(){
+      return (<FormArray>this.varFormG.get('hobbies')).push(this.addHobbies())
+    }
+    removeHobbiesForm(index){
+      return (<FormArray>this.varFormG.get('hobbies')).removeAt(index);
+    }
+
+    get GFormArray(){
+      return <FormArray>this.varFormG.get('hobbies');
     }
 
   OnSubmitFun(){

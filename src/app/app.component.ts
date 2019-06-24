@@ -9,6 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   title = 'AngularCLIApp';
-
+  Icon='reorder';
+  ChangeBtnIcon(val){
+    if(this.Icon=='restore'){this.Icon='reorder'}
+    else{this.Icon='restore'}
+  }
  
 }

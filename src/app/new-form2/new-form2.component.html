@@ -1,0 +1,12 @@
+<input type="text" [(ngModel)]="inp">
+<span>{{inp}}</span>
+<br><br>
+Auto complete
+<input type="text" [formControl]="formControl" [matAutocomplete]="autoC">
+<p>Search Result for : {{formControl.value}}</p>
+<mat-autocomplete #autoC ="matAutocomplete" >
+  <mat-option *ngFor="let myOp of myOpsF | async"  [value]="myOp">{{myOp}}</mat-option>
+</mat-autocomplete>
+<fieldset>
+  <legend>Hello</legend>
+</fieldset>

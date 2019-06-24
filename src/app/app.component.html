@@ -1,7 +1,33 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-top-navigation></app-top-navigation>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="navbar">    
+    <mat-button-toggle (click)="nav.toggle(); ChangeBtnIcon()"><mat-icon>{{ Icon }}</mat-icon></mat-button-toggle>
+    <a class="active" routerLink="/"><i class="fa fa-fw fa-home"></i> Home</a> 
+    <a routerLink="/MatCombo" ><i class="fa fa-fw fa-search"></i> Material</a>
+    <a routerLink="/MatCombo1" ><i class="fa fa-fw fa-search"></i> Material 1</a> 
+    <a routerLink="/TestForm"><i class="fa fa-fw fa-envelope"></i> Test Form</a> 
+    <a routerLink="/new-form"><i class="fa fa-fw fa-user"></i> New Form</a>
+    <a routerLink="/NewForm2"><i class="fa fa-fw fa-user"></i> New Form 2</a>
+    <a routerLink="/NestedForm"><i class="fa fa-fw fa-user"></i> Nested Form</a>
+    
+  </div>
+<mat-sidenav-container >
+    <mat-sidenav #nav mode="side">
+        <div><a routerLink="/">Home</a></div>
+        <div><a routerLink="/new-form">New Form</a></div>
+        <div><a routerLink="/TestForm">Test Form</a></div>
+        <div><a routerLink="/MatCombo">Material Test</a></div>
+        <div><a routerLink="/MatCombo1">Material Test 1</a></div>
+        <div><a routerLink="/NewForm2">new form 2</a></div>
+        <div><a routerLink="/NestedForm">Nested Form</a></div>
+    </mat-sidenav>
+  <mat-sidenav-content>
 <section>
   <router-outlet></router-outlet>
 </section>
+</mat-sidenav-content>
+</mat-sidenav-container>
+
   
 

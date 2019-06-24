@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Default form register -->
+<form [formGroup]="nformGroup" class="text-center border border-light p-5">
+
+    <p class="h4 mb-4">Sign up</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" formControlName="fname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+            <span *ngIf="nformGroup.get('fname').touched && nformGroup.get('fname').invalid" class="alert">First name should not be empty</span>
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input type="text" formControlName="lname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+            <span *ngIf="nformGroup.get('lname').touched && nformGroup.get('lname').invalid" class="alert">last name should not be empty</span>
+        </div>
+    </div>
+
+    <!-- E-mail -->
+    <div>
+            <input type="email" formControlName="email"  id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+            <span *ngIf="nformGroup.get('email').touched && nformGroup.get('email').invalid" class="alert">Please provide valid email id</span>
+            
+    </div>
+    
+    
+    <!-- Phone number -->
+    
+    <div formArrayName="phoneNums">
+        <div class="form-row " *ngFor="let G of nformGroup['controls'].phoneNums['controls']; let j = index" [formGroupName]="j" >
+                <div class="col-9">
+                    <input type="text" formControlName="PhoneNumDes" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" >
+                    <span *ngIf="G.get('PhoneNumDes').touched && G.get('PhoneNumDes').invalid"  class="alert">Provide your mobile number</span>
+                </div>                
+                <div class="col-3">
+                  <div>
+                      <div class="col">
+                          <button class="btn btn-info" (click)="addPhoneNumControl()">Add</button>
+                          <button class="btn btn-danger" (click)="removePhoneNumControl(j)">Delete</button>          
+                      </div>  
+                  </div>
+                </div>
+                
+                <div formArrayName="phoneNum">
+                        <div *ngFor="let addPhone of G['controls'].phoneNum['controls']; let k=index" [formGroupName]="k">
+                                <div class="col-12">
+                                        <input type="text" formControlName="addPhoneNum" id="defaultRegisterPhonePassword" class="form-control" placeholder="Add Phone number" >
+                                        <span *ngIf="addPhone.get('addPhoneNum').touched && addPhone.get('addPhoneNum').invalid" class="alert">Provide your additional mobile number</span>
+                                        <button class="btn btn-info" (click)="addAddPhoneNumControl(j)">Add Additional</button>
+                                </div>
+                        </div>
+                </div>                          
+          </div>    
+    </div>
+  
+   
+    
+
+
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" (click)="submit()" type="submit">Log Json from Nested form</button>
+
+    <button (click)="BindValues()" class="btn btn-info my-4 btn-block">Bind Json to Nested Form</button>
+
+    <button (click)="validateForm()" class="btn btn-info my-4 btn-block">Validate</button>
+    <p>{{nformGroup.valid}}</p>
+    <h5>Field Values</h5>
+    <pre style="font-size:15px">{{ nformGroup.value | json }}</pre>
+    <!-- Social register -->
+    <p>or sign up with:</p>
+
+    <a type="button" class="light-blue-text mx-2">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <i class="fab fa-github"></i>
+    </a>
+
+    <hr>
+
+    <!-- Terms of service -->
+    <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a>
+
+</form>
+<!-- Default form register -->

@@ -1,0 +1,114 @@
+<div class="jumbotron">
+  
+  <input type="text" [(ngModel)]="myIn" #in  >
+  <button (click)="AddVal()">Add</button>
+  <div [(ngModel)]="myIn">{{myObjs}}</div>
+  <form [formGroup]="FG">
+    <div>CheckBox : {{FG.value.chkBox}}</div>
+    <div>RadioBtn Val : {{FG.value.radBtn}}</div>
+    <div>Dropdown Val : {{FG.value.drpDown}}</div>
+    <p>
+    <mat-checkbox formControlName="chkBox">Disable Controls</mat-checkbox>
+  </p><p>
+    <mat-radio-group [disabled]="FG.value.chkBox" formControlName="radBtn">
+      <mat-radio-button value="A">A</mat-radio-button>
+      <mat-radio-button value="B">B</mat-radio-button>
+      <mat-radio-button value="C">C</mat-radio-button>
+    </mat-radio-group>
+  </p>
+  <p>
+    <mat-form-field  appearance="outline" >
+      <mat-label>F Name</mat-label>
+      <input [disabled]="FG.value.chkBox" matInput type="text">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+     <mat-form-field>
+       <mat-select [disabled]="FG.value.chkBox" (selectionChange)="valChange(FG.value.drpDown)"  formControlName="drpDown">
+          <mat-option value="A">A</mat-option>
+          <mat-option value="B">B</mat-option>
+          <mat-option value="C">C</mat-option>
+       </mat-select>
+     </mat-form-field>
+  </p>
+  <p>
+      <mat-form-field >
+        <mat-select [disabled]="FG.value.chkBox" formControlName="subdrpDown" multiple>
+          <mat-option>--Select--</mat-option>
+           <mat-option *ngFor="let selval of selValz" [value]="selval">{{selval}}</mat-option>           
+        </mat-select>
+      </mat-form-field>
+   </p>
+  </form>
+<mat-accordion multi="true">
+      <mat-expansion-panel (opened)="matOpenState=true" (closed)="matOpenState=false">
+          <mat-expansion-panel-header >
+            <mat-panel-title>Mat Panel Title</mat-panel-title>
+            <mat-panel-description>Mat panel description {{matOpenState}}</mat-panel-description>
+          </mat-expansion-panel-header>    
+          <p>Its content of the panel 1</p>
+          <mat-action-row><button mat-raised-button>Click Me</button></mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="matOpenState=true" (closed)="matOpenState=false">
+            <mat-expansion-panel-header >
+              <mat-panel-title>Mat Panel Title</mat-panel-title>
+              <mat-panel-description>Mat panel description {{matOpenState}}</mat-panel-description>
+            </mat-expansion-panel-header>    
+            <p>Its content of the panel 2</p>
+            <mat-action-row><button mat-raised-button>Click Me</button></mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="matOpenState=true" (closed)="matOpenState=false">
+              <mat-expansion-panel-header >
+                <mat-panel-title>Mat Panel Title</mat-panel-title>
+                <mat-panel-description>Mat panel description {{matOpenState}}</mat-panel-description>
+              </mat-expansion-panel-header>    
+              <p>Its content of the panel 3</p>
+              <mat-action-row><button mat-raised-button>Click Me</button></mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                This is the expansion title
+              </mat-expansion-panel-header>
+            
+              <ng-template matExpansionPanelContent>
+                <mat-grid-list cols="2">
+                  <mat-grid-tile >
+                      <mat-card>
+                          <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title >Title</mat-card-title>
+                            <mat-card-subtitle>Sub Title</mat-card-subtitle>
+                          </mat-card-header>
+                          <mat-card-content>
+                            <p>this is content of the card</p>
+                          </mat-card-content>
+                        </mat-card>
+                  </mat-grid-tile>
+                  <mat-grid-tile >
+                      <mat-card>
+                          <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title >Title</mat-card-title>
+                            <mat-card-subtitle>Sub Title</mat-card-subtitle>
+                          </mat-card-header>
+                          <mat-card-content>
+                            <p>this is content of the card</p>
+                          </mat-card-content>
+                        </mat-card>
+                  </mat-grid-tile>
+                </mat-grid-list>                 
+              </ng-template>
+            </mat-expansion-panel>
+</mat-accordion>
+
+<input #temp1 type="text">
+
+<div *ngFor="let obj of myObjs">
+  <input type="text" value="{{obj}}">
+</div>
+
+
+
+</div>

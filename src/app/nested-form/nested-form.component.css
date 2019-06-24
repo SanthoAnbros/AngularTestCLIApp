@@ -1,0 +1,11 @@
+.control-buttons {
+    text-align: right;    
+}
+
+.control-buttons img {
+    cursor: pointer;
+}
+
+.alert{
+    color: red;
+}
