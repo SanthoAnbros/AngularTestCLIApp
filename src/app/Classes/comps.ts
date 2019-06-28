@@ -12,3 +12,11 @@ export class ItemsToBePost{
     public body : string;
     public userId : number;
 }
+
+export class Photo{
+    public albumId: number;
+    public id: number;
+    public thumbnailUrl: string;
+    public title: string;
+    public url: string
+} 

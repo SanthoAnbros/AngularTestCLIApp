@@ -18,7 +18,10 @@ import { HomeComponent } from './home/home.component';
 import { MaterialCombo1Component } from './material-combo1/material-combo1.component';
 import { NewForm2Component } from './new-form2/new-form2.component';
 import { NestedFormComponent } from './nested-form/nested-form.component';
-
+import { HTTPService } from './Services/http.service';
+import { ScrollablePageComponent } from './scrollable-page/scrollable-page.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { ScrollPageDetailsComponent } from './scroll-page-details/scroll-page-details.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { NestedFormComponent } from './nested-form/nested-form.component';
     HomeComponent,
     MaterialCombo1Component,
     NewForm2Component,
-    NestedFormComponent
+    NestedFormComponent,
+    ScrollablePageComponent,
+    ScrollPageDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +46,11 @@ import { NestedFormComponent } from './nested-form/nested-form.component';
     HttpClientModule, 
     MatAutocompleteModule, 
     MatInputModule, 
-    MaterialModule
+    MaterialModule,
+    InfiniteScrollModule
     
   ],
-  providers: [ServicesService, XlservicesService],
+  providers: [ServicesService, XlservicesService, HTTPService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

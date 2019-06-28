@@ -1,0 +1,19 @@
+<div id="header" style="top:0px; left:0px; height:100px; right:0px;overflow:hidden;">
+<p>Time Now : {{TimeNow}} : Due {{DueTime}}</p>
+  <input type="text" [(ngModel)]="searchKey"  (keyup)="SearchById()">
+ <p>Search Key : {{searchKey}}</p> 
+</div> 
+<div class="row" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false"  
+    style="height: 500px; overflow-y: scroll;">
+  <mat-card>
+    <div>
+      <div *ngFor="let Photo of PhotosArray">
+          <p>{{Photo.id}}</p>
+          <p>{{Photo.title}}</p>
+          <p>{{Photo.thumbnailUrl}}</p>
+          <img src="{{Photo.thumbnailUrl}}" class="img-rounded" alt="Cinque Terre">
+          <a [routerLink]="[ '/scrollPageDet', Photo.id ]">Details</a>
+      </div>
+    </div>
+  </mat-card>
+</div>
