@@ -3,7 +3,7 @@ import { HTTPService } from '../Services/http.service';
 import { FormControl } from '@angular/forms';
 import { Photo } from '../Classes/comps';
 import { timer } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-scrollable-page',
@@ -14,7 +14,7 @@ export class ScrollablePageComponent implements OnInit {
 
   TimeNow;
   DueTime;
-  constructor(private HttpService : HTTPService, private activatedRoute:ActivatedRoute) { 
+  constructor(private HttpService : HTTPService, private activatedRoute:ActivatedRoute, private router : Router) { 
     setInterval(()=>{
       this.TimeNow = (new Date()).toLocaleTimeString();
       this.DueTime = timer(10);
@@ -24,8 +24,23 @@ export class ScrollablePageComponent implements OnInit {
   page:number=1;
   PhotosArray:Photo[]=[];
   
+  searchKey;
+
   ngOnInit() {
-    this.GetPhotos(this.page);
+
+    // alert('Routing To Main');
+    // this.router.navigate(['/'],{queryParams:{'Redirected From ScrollPage':true}})
+    
+    this.activatedRoute.queryParamMap
+    .subscribe(params=>{
+      this.searchKey = params.get('searchQuery');
+    });
+    if(this.searchKey==''){
+      this.GetPhotos(this.page);
+    }
+    else{
+      this.SearchById();
+    }
     
   }
 
@@ -40,7 +55,7 @@ export class ScrollablePageComponent implements OnInit {
     )
   }
   inp;
-  searchKey;
+  
   SearchById(){
     if(this.searchKey){
       this.HttpService.SearchById(this.searchKey).subscribe(

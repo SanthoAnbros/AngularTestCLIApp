@@ -11,8 +11,8 @@
           <p>{{Photo.id}}</p>
           <p>{{Photo.title}}</p>
           <p>{{Photo.thumbnailUrl}}</p>
-          <img src="{{Photo.thumbnailUrl}}" class="img-rounded" alt="Cinque Terre">
-          <a [routerLink]="[ '/scrollPageDet', Photo.id ]">Details</a>
+          <img src="{{Photo.thumbnailUrl}}" class="img-rounded" alt="Thumbnail">
+          <a [routerLink]="[ '/scrollPageDet', Photo.id ]" [queryParams]="{ order: 'popular'}">Details</a>
       </div>
     </div>
   </mat-card>

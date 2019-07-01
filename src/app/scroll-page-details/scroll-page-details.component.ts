@@ -23,9 +23,14 @@ export class ScrollPageDetailsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap
     .subscribe(param =>{
+      console.log(param);
       console.log(param.get('id'));
       this.bindData(parseInt(param.get('id')));
-    })
+    });
+    this.activatedRoute.queryParamMap
+    .subscribe(query=>{
+      console.log(query);
+    });
   }
   
   id;
