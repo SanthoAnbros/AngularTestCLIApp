@@ -9,22 +9,29 @@ import { NewForm2Component } from './new-form2/new-form2.component';
 import { NestedFormComponent } from './nested-form/nested-form.component';
 import { ScrollablePageComponent } from './scrollable-page/scrollable-page.component';
 import { ScrollPageDetailsComponent } from './scroll-page-details/scroll-page-details.component';
+import { TestCompoComponent } from './test-compo/test-compo.component';
+
+import { OktaAuthModule, OktaAuthGuard, OktaCallbackComponent} from '@okta/okta-angular'
 
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
-  {path:'new-form', component: NewFormComponent},
+  {path:'implicit/callback', component:OktaCallbackComponent},
+  {path:'new-form', component: NewFormComponent, canActivate : [OktaAuthGuard]},
   {path:'TestForm', component: TestFormComponent},
   {path:'NewForm2', component: NewForm2Component},
   {path:'MatCombo', component:MaterialCompoComponent},
   {path:'MatCombo1', component: MaterialCombo1Component},
   {path:'NestedForm', component:NestedFormComponent},
   {path: 'scrollPage', component:ScrollablePageComponent},
-  {path: 'scrollPageDet/:id', component:ScrollPageDetailsComponent}
+  {path: 'scrollPageDet/:id', component:ScrollPageDetailsComponent},
+  {path:'TestComp', component:TestCompoComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    OktaAuthModule,
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

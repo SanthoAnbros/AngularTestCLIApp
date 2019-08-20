@@ -38,7 +38,7 @@ export class ScrollPageDetailsComponent implements OnInit {
   
 
   bindData(paramId:number){
-    debugger;
+    //debugger;
     this.http.SearchById(paramId)
     .subscribe((val)=>{
       console.log(val);

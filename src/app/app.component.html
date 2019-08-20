@@ -3,14 +3,18 @@
 
 <div class="navbar">    
     <mat-button-toggle (click)="nav.toggle(); ChangeBtnIcon()"><mat-icon>{{ Icon }}</mat-icon></mat-button-toggle>
-    <a class="active" routerLink="/"><i class="fa fa-fw fa-home"></i> Home</a> 
-    <a routerLink="/MatCombo" ><i class="fa fa-fw fa-search"></i> Material</a>
-    <a routerLink="/MatCombo1" ><i class="fa fa-fw fa-search"></i> Material 1</a> 
-    <a routerLink="/TestForm"><i class="fa fa-fw fa-envelope"></i> Test Form</a> 
-    <a routerLink="/new-form"><i class="fa fa-fw fa-user"></i> New Form</a>
-    <a routerLink="/NewForm2"><i class="fa fa-fw fa-user"></i> New Form 2</a>
-    <a routerLink="/NestedForm"><i class="fa fa-fw fa-user"></i> Nested Form</a>
-    <a routerLink="/scrollPage"><i class="fa fa-fw fa-user"></i>scrollPage</a>
+    
+    <a  *ngIf='!isAuthenticated' href="#" (click)="login()"><i class="fa fa-fw fa-user"></i>Login</a>
+    <a id="logout-button" href="#" *ngIf='isAuthenticated' (click)="logout()"><i class="fa fa-fw fa-user"></i>Logout</a>
+
+    <a class="active" *ngIf='isAuthenticated' routerLink="/"><i class="fa fa-fw fa-home"></i> Home</a> 
+    <a routerLink="/MatCombo" *ngIf='isAuthenticated' ><i class="fa fa-fw fa-search"></i> Material</a>
+    <a routerLink="/MatCombo1" *ngIf='isAuthenticated' ><i class="fa fa-fw fa-search"></i> Material 1</a> 
+    <a routerLink="/TestForm" *ngIf='isAuthenticated'><i class="fa fa-fw fa-envelope"></i> Test Form</a> 
+    <a routerLink="/new-form" *ngIf='isAuthenticated'><i class="fa fa-fw fa-user"></i> New Form</a>
+    <a routerLink="/NewForm2" *ngIf='isAuthenticated' ><i class="fa fa-fw fa-user"></i> New Form 2</a>
+    <a routerLink="/NestedForm" *ngIf='isAuthenticated'><i class="fa fa-fw fa-user"></i> Nested Form</a>
+    <a routerLink="/scrollPage" *ngIf='isAuthenticated'><i class="fa fa-fw fa-user"></i>scrollPage</a>
     
   </div>
 <mat-sidenav-container >
@@ -24,11 +28,11 @@
         <div><a routerLink="/NestedForm">Nested Form</a></div>
         <div><a routerLink="/scrollPage">scrollPage</a></div>
     </mat-sidenav>
-  <mat-sidenav-content>
-<section>
-  <router-outlet></router-outlet>
-</section>
-</mat-sidenav-content>
+    <mat-sidenav-content>
+      <section>
+        <router-outlet></router-outlet>
+      </section>
+    </mat-sidenav-content>
 </mat-sidenav-container>
 
   

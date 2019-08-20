@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
+    "@okta/okta-angular": "^1.2.1",
     "@types/angular": "^1.6.54",
     "@types/angular-material": "^1.1.68",
     "bootstrap": "^4.3.1",

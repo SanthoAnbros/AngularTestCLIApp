@@ -22,6 +22,15 @@ import { HTTPService } from './Services/http.service';
 import { ScrollablePageComponent } from './scrollable-page/scrollable-page.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { ScrollPageDetailsComponent } from './scroll-page-details/scroll-page-details.component';
+import { TestCompoComponent } from './test-compo/test-compo.component';
+import { TestServiceService } from './Service2/test-service.service';
+
+import {
+  OKTA_CONFIG,
+  OktaAuthModule
+} from '@okta/okta-angular';
+
+import config from './.samples.config'
 
 @NgModule({
   declarations: [
@@ -35,7 +44,8 @@ import { ScrollPageDetailsComponent } from './scroll-page-details/scroll-page-de
     NewForm2Component,
     NestedFormComponent,
     ScrollablePageComponent,
-    ScrollPageDetailsComponent
+    ScrollPageDetailsComponent,
+    TestCompoComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +60,12 @@ import { ScrollPageDetailsComponent } from './scroll-page-details/scroll-page-de
     InfiniteScrollModule
     
   ],
-  providers: [ServicesService, XlservicesService, HTTPService],
+  providers: [ServicesService, 
+    XlservicesService, 
+    HTTPService, 
+    TestServiceService,
+    { provide:OKTA_CONFIG, useValue: config.oidc }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

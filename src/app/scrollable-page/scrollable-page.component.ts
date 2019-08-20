@@ -24,7 +24,7 @@ export class ScrollablePageComponent implements OnInit {
   page:number=1;
   PhotosArray:Photo[]=[];
   
-  searchKey;
+  searchKey='';
 
   ngOnInit() {
 
@@ -33,9 +33,16 @@ export class ScrollablePageComponent implements OnInit {
     
     this.activatedRoute.queryParamMap
     .subscribe(params=>{
-      this.searchKey = params.get('searchQuery');
+      if(params){
+        try{
+          this.searchKey = params.get('searchQuery');
+        }
+        catch(err){
+        console.log(err)
+        } 
+      }      
     });
-    if(this.searchKey==''){
+    if(this.searchKey=='' || this.searchKey==null){
       this.GetPhotos(this.page);
     }
     else{

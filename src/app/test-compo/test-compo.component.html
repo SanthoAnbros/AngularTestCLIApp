@@ -1,0 +1,6 @@
+<input type='text' [value]='inpText' [(ngModel)]="inpText">
+<p>{{inpText}}</p>
+
+<div *ngFor="let item of varArray">
+    <div *ngIf="Show" > {{item.name}}</div>
+</div>
